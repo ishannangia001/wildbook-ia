@@ -671,7 +671,7 @@ def check_image_bit_depth(ibs, gid_list=None):
 
     arg_iter = list(zip(gpath_list))
     flag_list = ut.util_parallel.generate2(
-        check_image_bit_depth_worker, arg_iter, futures_threaded=True
+        check_image_bit_depth_worker, arg_iter, use_futures_thread=True
     )
     flag_list = list(flag_list)
 
@@ -724,7 +724,7 @@ def check_image_loadable(ibs, gid_list=None):
         nTasks=len(arg_iter),
         ordered=True,
         progkw={'freq': 1},
-        futures_threaded=True,
+        use_futures_thread=True,
     )
     flag_list = list(flag_list)
     loadable_list = ut.take_column(flag_list, 0)
