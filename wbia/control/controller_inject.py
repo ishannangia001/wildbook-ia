@@ -906,10 +906,11 @@ def get_wbia_flask_api(__name__, DEBUG_PYTHON_STACK_TRACE_JSON_RESPONSE=False):
                     __format__ = False  # Default __format__ value
                     ignore_cookie_set = False
                     try:
-                        # logger.info('Processing: %r with args: %r and kwargs: %r' % (func, args, kwargs, ))
+                        logger.info('Processing: %r with args: %r and kwargs: %r' % (func, args, kwargs, ))
                         # Pipe web input into Python web call
                         kwargs2 = _process_input(flask.request.args)
                         kwargs3 = _process_input(flask.request.form)
+                        logger.info('controller_inject: ~913')
                         try:
                             # kwargs4 = _process_input(flask.request.get_json())
                             kwargs4 = ut.from_json(flask.request.data)
