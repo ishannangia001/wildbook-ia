@@ -137,7 +137,8 @@ def start_tornado(
         # Start the tornado web handler
         # WSGI = Web Server Gateway Interface
         # WSGI is Python standard described in detail in PEP 3333
-        wsgi_container = TimedWSGIContainer(app)
+#         wsgi_container = TimedWSGIContainer(app)
+        wsgi_container = tornado.wsgi.WSGIContainer(app)
         logger.info('Created WSGI Container')
 
         # # Try wrapping with newrelic performance monitoring
