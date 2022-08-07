@@ -226,7 +226,7 @@ def start_tornado(
         logging.basicConfig(level=logging.INFO)
         logger.info('Got Loggers...')
         if start_web_loop:
-            tornado.ioloop.IOLoop.instance().start()
+            tornado.ioloop.IOLoop.current().start()
     logger.info('started web loop IO Instance...')
     # Get the port if unspecified
     if port is None:
