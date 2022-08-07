@@ -132,14 +132,14 @@ def start_tornado(
 #             app_.ibs = app.ibs
 #             app = app_
 #         else:
-        logger.info('SKIPPING PROMETHEUS')
+        logger.info('SKIPPING PROMETHEUS...')
+        app = controller_inject.get_flask_app()
+        logger.info("Flask App recreated !")
 
         # Start the tornado web handler
         # WSGI = Web Server Gateway Interface
         # WSGI is Python standard described in detail in PEP 3333
 #         wsgi_container = TimedWSGIContainer(app)
-        app = controller_inject.get_flask_app()
-        logger.info("Flask App recreated !")
         wsgi_container = tornado.wsgi.WSGIContainer(app)
         logger.info('Created WSGI Container')
 
