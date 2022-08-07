@@ -664,16 +664,21 @@ def check_image_uuid_consistency(ibs, gid_list=None):
 @register_ibs_method
 def check_image_bit_depth(ibs, gid_list=None):
     logger.info('checking image depth')
+        
     if gid_list is None:
+        logger.info('Incoming gid_list is None')
         gid_list = ibs.get_valid_gids()
+    logger.info(f"# gid list:{len(gid_list)}" )
 
     gpath_list = ibs.get_image_paths(gid_list)
 
     arg_iter = list(zip(gpath_list))
+    logger.info(f'# of arg_iter:{arg_iter}')
     flag_list = ut.util_parallel.generate2(
         check_image_bit_depth_worker, arg_iter, use_futures_thread=True
     )
     flag_list = list(flag_list)
+    logger.info(f"Flag list: {flag_list}")
 
     update_gid_list = ut.compress(gid_list, flag_list)
 
