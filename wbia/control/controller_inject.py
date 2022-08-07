@@ -906,7 +906,7 @@ def get_wbia_flask_api(__name__, DEBUG_PYTHON_STACK_TRACE_JSON_RESPONSE=False):
                     __format__ = False  # Default __format__ value
                     ignore_cookie_set = False
                     try:
-                        logger.info('Processing: %r with args: %r and kwargs: %r' % (func, kwargs, ))
+                        logger.info('Processing: %r and kwargs: %r' % (func, kwargs))
                         # Pipe web input into Python web call
                         kwargs2 = _process_input(flask.request.args)
                         logger.info('Done with args from request')
