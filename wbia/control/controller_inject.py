@@ -918,14 +918,18 @@ def get_wbia_flask_api(__name__, DEBUG_PYTHON_STACK_TRACE_JSON_RESPONSE=False):
                         kwargs.update(kwargs2)
                         kwargs.update(kwargs3)
                         kwargs.update(kwargs4)
+                        logger.info("Controller_inject: ~921")
+                        logger.info(f'Kwargs: {kwargs}')
 
                         # Update the request object to include the final rectified inputs for possible future reference
                         flask.request.processed = ut.to_json(kwargs)
+                        logger.info("Controller_inject: ~927")
 
                         jQuery_callback = None
                         if 'callback' in kwargs and 'jQuery' in kwargs['callback']:
                             jQuery_callback = str(kwargs.pop('callback', None))
                             kwargs.pop('_', None)
+                            logger.info("Controller_inject: ~932")
 
                         # logger.info('KWARGS:  %s' % (kwargs, ))
                         # logger.info('COOKIES: %s' % (request.cookies, ))
@@ -939,6 +943,7 @@ def get_wbia_flask_api(__name__, DEBUG_PYTHON_STACK_TRACE_JSON_RESPONSE=False):
                         from wbia.web.app import PROMETHEUS
 
                         if PROMETHEUS:
+                            logger.info("Controller_inject: ~942")
                             exclude_tag_list = [
                                 '/api/test/heartbeat/',
                                 '/v0.1/wildbook/status/',
@@ -946,8 +951,12 @@ def get_wbia_flask_api(__name__, DEBUG_PYTHON_STACK_TRACE_JSON_RESPONSE=False):
                             ]
                             tag = request.url_rule.rule
                             if tag not in exclude_tag_list:
+                                logger.info("Controller_inject: ~950")
                                 ibs = flask.current_app.ibs
+                                logger.info("Controller_inject: ~952")
                                 ibs.prometheus_increment_api(tag)
+                                logger.info("Controller_inject: ~954")
+                                
 
                         resp_tup = translate_wbia_webcall(func, **kwargs)
                         rawreturn, success, code, message = resp_tup
