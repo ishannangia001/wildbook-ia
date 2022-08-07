@@ -139,6 +139,7 @@ def start_tornado(
         # WSGI is Python standard described in detail in PEP 3333
 #         wsgi_container = TimedWSGIContainer(app)
         app = controller_inject.get_flask_app()
+        logger.info("Flask App recreated !")
         wsgi_container = tornado.wsgi.WSGIContainer(app)
         logger.info('Created WSGI Container')
 
