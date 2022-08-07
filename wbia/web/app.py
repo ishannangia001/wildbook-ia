@@ -138,6 +138,7 @@ def start_tornado(
         # WSGI = Web Server Gateway Interface
         # WSGI is Python standard described in detail in PEP 3333
         wsgi_container = TimedWSGIContainer(app)
+        logger.info('Created WSGI Container')
 
         # # Try wrapping with newrelic performance monitoring
         # try:
@@ -147,7 +148,8 @@ def start_tornado(
         #     pass
 
         http_server = tornado.httpserver.HTTPServer(wsgi_container)
-
+        logger.info('tornado server with wsgi container')
+        
         try:
             http_server.listen(app.server_port)
         except socket.error:
@@ -227,6 +229,7 @@ def start_tornado(
     if port is None:
         port = appf.DEFAULT_WEB_API_PORT
     # Launch the web handler
+    logger.info('Next step launches the web handler')
     _start_tornado(ibs, port)
 
 
