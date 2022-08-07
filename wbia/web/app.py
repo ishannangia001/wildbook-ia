@@ -133,14 +133,14 @@ def start_tornado(
 #             app = app_
 #         else:
         logger.info('SKIPPING PROMETHEUS...')
-        app = controller_inject.get_flask_app()
-        logger.info("Flask App recreated !")
+#         app = controller_inject.get_flask_app()
+#         logger.info("Flask App recreated !")
 
         # Start the tornado web handler
         # WSGI = Web Server Gateway Interface
         # WSGI is Python standard described in detail in PEP 3333
-#         wsgi_container = TimedWSGIContainer(app)
-        wsgi_container = tornado.wsgi.WSGIContainer(app)
+        wsgi_container = TimedWSGIContainer(app)
+#         wsgi_container = tornado.wsgi.WSGIContainer(app)
         logger.info('Created WSGI Container')
 
         # # Try wrapping with newrelic performance monitoring
