@@ -120,19 +120,19 @@ def start_tornado(
             logger.info('[web] opening browser with url = %r' % (url,))
             webbrowser.open(url)
 
-        if PROMETHEUS:
-            # Add prometheus wsgi middleware to route /metrics requests
-            logger.info('LOADING PROMETHEUS')
-            app_ = DispatcherMiddleware(
-                app, {'/metrics': prometheus_client.make_wsgi_app()}
-            )
-            # Migrate the most essential settings
-            app_.server_port = app.server_port
-            app_.server_url = app.server_url
-            app_.ibs = app.ibs
-            app = app_
-        else:
-            logger.info('SKIPPING PROMETHEUS')
+#         if PROMETHEUS:
+#             # Add prometheus wsgi middleware to route /metrics requests
+#             logger.info('LOADING PROMETHEUS')
+#             app_ = DispatcherMiddleware(
+#                 app, {'/metrics': prometheus_client.make_wsgi_app()}
+#             )
+#             # Migrate the most essential settings
+#             app_.server_port = app.server_port
+#             app_.server_url = app.server_url
+#             app_.ibs = app.ibs
+#             app = app_
+#         else:
+        logger.info('SKIPPING PROMETHEUS')
 
         # Start the tornado web handler
         # WSGI = Web Server Gateway Interface
