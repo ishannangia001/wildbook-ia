@@ -177,7 +177,7 @@ def start_tornado(
                         % (app.server_port, fallback_port)
                     )
                 )
-
+        logger.info('HTTP Server is listening...')        
         # Add more verbose logging
         try:
             utool_logfile_handler = ut.util_logging.__UTOOL_ROOT_LOGGER__
@@ -224,10 +224,10 @@ def start_tornado(
                 logger_.addHandler(utool_logfile_handler)
 
         logging.basicConfig(level=logging.INFO)
-
+        logger.info('Got Loggers...')
         if start_web_loop:
             tornado.ioloop.IOLoop.instance().start()
-
+    logger.info('started web loop IO Instance...')
     # Get the port if unspecified
     if port is None:
         port = appf.DEFAULT_WEB_API_PORT
